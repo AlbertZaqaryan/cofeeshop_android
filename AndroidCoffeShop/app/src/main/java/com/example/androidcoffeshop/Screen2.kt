@@ -64,7 +64,8 @@ import com.example.androidcoffeshop.ui.theme.C6
 fun Screen2(
     categoryViewModel: CategoryViewModel = viewModel(),
     productsViewModel: ProductsViewModel = viewModel(),
-    navToScreen3: (Any?) -> Unit
+    navToScreen3: (Any?) -> Unit,
+    navToScreen4: () -> Unit
 ) {
 
     val categories by categoryViewModel.categories.observeAsState(initial = emptyList())
@@ -364,7 +365,7 @@ fun Screen2(
                     )
                 }
                 IconButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { navToScreen4() },
                     modifier = Modifier
                 ) {
                     Icon(

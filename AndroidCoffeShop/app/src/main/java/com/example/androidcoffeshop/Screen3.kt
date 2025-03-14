@@ -66,7 +66,6 @@ fun Screen3(
     navToScreen2: () -> Unit, id: Int
 ) {
     val products by productsViewModel.products.observeAsState(initial = emptyList())
-    var count by remember { mutableStateOf(1u) }
     LaunchedEffect(Unit) {
         if (products.isEmpty()) {
             productsViewModel.getProducts()
@@ -388,7 +387,6 @@ fun Screen3(
                         )
                         if (product != null) {
                             var p = if (selectedButton == 1) product.price_S else if (selectedButton == 2) product.price_M else product.price_L
-                            p = p.toDouble() * count.toDouble()
                             Text(
                                 text = p.toString(),
                                 fontSize = 18.sp,
@@ -415,18 +413,6 @@ fun Screen3(
                             fontSize = 16.sp,
                             fontWeight = FontWeight.SemiBold
                         )
-                    }
-                    Column {
-                        IconButton(onClick = { count++ }) {
-                            Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = "")
-                        }
-                        Text(text = "${count}")
-                        IconButton(onClick = { if (count > 1u){
-                            count--
-                        }
-                        }) {
-                            Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = "")
-                        }
                     }
                 }
             }

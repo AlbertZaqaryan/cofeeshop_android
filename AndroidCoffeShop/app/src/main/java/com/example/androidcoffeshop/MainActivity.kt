@@ -37,12 +37,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "Screen2") {
+    NavHost(navController = navController, startDestination = "Screen4") {
 
         composable("Screen2") {
-            Screen2 { id ->
-                navController.navigate("Screen3/$id") // Correctly pass the id
-            }
+            Screen2(
+                navToScreen3  = { id -> navController.navigate("Screen3/$id") },
+                navToScreen4 = { navController.navigate("Screen4") } // Corrected navigation
+            )
         }
 
         composable(
@@ -54,6 +55,12 @@ fun Navigation() {
                 id = id,
                 navToScreen2 = { navController.navigate("Screen2") }
             )
+        }
+
+        composable("Screen4") {
+            Screen4 {
+                navController.navigate("Screen2")
+            }
         }
     }
 }

@@ -39,4 +39,8 @@ class ProductsViewModel : ViewModel() {
             }
         }
     }
+
+    fun getProd(id: Int): Product? {
+        return _products.value?.find { it.id == id }
+    }
 }
